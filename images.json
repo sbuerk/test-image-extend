@@ -1,0 +1,15 @@
+{
+    "test-testing-php81": {
+        "context": "test-testing-php81",
+        "docker-image-basename": "sbuerk\/base-testing-php81",
+        "docker-image-name": "sbuerk\/test-testing-php81",
+        "full": "1.0.2",
+        "gh-image-name": "ghcr.io\/sbuerk\/test-testing-php81",
+        "lookup-name": "test-testing-php81",
+        "major": 1,
+        "minor": 0,
+        "patchlevel": 2,
+        "platforms": "linux\/amd64,linux\/arm64",
+        "short": "1.0"
+    }
+}

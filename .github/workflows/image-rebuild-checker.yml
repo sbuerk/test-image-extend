@@ -1,0 +1,132 @@
+name: base image update check
+on:
+  schedule:
+    - cron: "10 */2 * * *"
+
+jobs:
+
+  matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - id: set-matrix
+        run: |
+          matrixStringifiedObject=$( ./get-image-matrix.php )
+          echo "matrix=${matrixStringifiedObject}" >> $GITHUB_OUTPUT 
+
+  check:
+    name: Check ${{ matrix.docker-image-name }}
+    runs-on: ubuntu-latest
+    needs: matrix
+
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the
+      # added or changed files to the repository.
+      contents: write          
+
+    strategy:
+      # This prevents cancellation of matrix job runs, if one/two already failed and let the
+      # rest matrix jobs be executed anyway.
+      fail-fast: false
+
+      # Matrix is build from images.json file.
+      matrix: ${{fromJson(needs.matrix.outputs.matrix)}}
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          # This is needed, otherwise the commit push will not trigger the normal on-push workflow
+          token: ${{ secrets.PACKAGES_GITHUB_TOKEN }}
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.PACKAGES_GITHUB_TOKEN }}
+
+      - name: "Check base image for updates (AMD64)"
+        id: checkLinuxAMD64
+        uses: giggio/docker-image-update-checker@v2
+        with:
+          base-image: ${{ matrix.docker-image-basename }}:latest
+          image: ${{ matrix.docker-image-name }}:latest
+          os: linux
+          arch: amd64
+          verbose: true
+
+      - name: "Check base image for updates (ARM64)"
+        id: checkLinuxARM64
+        uses: giggio/docker-image-update-checker@v2
+        with:
+          base-image: ${{ matrix.docker-image-basename }}:latest
+          image: ${{ matrix.docker-image-name }}:latest
+          os: linux
+          arch: arm64
+          verbose: true
+
+      - name: Base image not changed
+        if: steps.checkLinuxAMD64.outputs.needs-updating == 'false' || steps.checkLinuxARM64.outputs.needs-updating == 'false'
+        run: |
+          echo " -------------------------------------------------------------------------"
+          echo "  >> Base image not changed for image \"${{ matrix.docker-image-name }}\""
+          echo "     Nothing further to do."
+          echo " -------------------------------------------------------------------------"          
+
+      - name: Base image changed
+        if: steps.checkLinuxAMD64.outputs.needs-updating == 'true' && steps.checkLinuxARM64.outputs.needs-updating == 'true'
+        run: |
+          echo " -------------------------------------------------------------------------"
+          echo "  >> Base image changed - now check if build still works, and then create"
+          echo "     commit to main branch with incremented patchlevel version for image:"
+          echo "     \"${{ matrix.docker-image-name }}\""
+          echo " -------------------------------------------------------------------------"
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+        if: steps.checkLinuxAMD64.outputs.needs-updating == 'true' && steps.checkLinuxARM64.outputs.needs-updating == 'true'
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+        if: success() && steps.checkLinuxAMD64.outputs.needs-updating == 'true' && steps.checkLinuxARM64.outputs.needs-updating == 'true'
+
+      - name: Build and export to Docker
+        uses: docker/build-push-action@v4
+        if: steps.checkLinuxAMD64.outputs.needs-updating == 'true' && steps.checkLinuxARM64.outputs.needs-updating == 'true'
+        with:
+          context: ${{ matrix.context }}
+          push: false
+          load: false
+          platforms: ${{ matrix.platforms }}
+          tags: ${{ matrix.docker-image-name }}:test
+          provenance: false
+
+      - name: Increment version
+        if: steps.checkLinuxAMD64.outputs.needs-updating == 'true' && steps.checkLinuxARM64.outputs.needs-updating == 'true'
+        run: |
+          ./image-version.php ${{ matrix.lookup-name }} --patchlevel
+
+      - name: Create version increase commit
+        uses: stefanzweifel/git-auto-commit-action@v4
+        if: steps.checkLinuxAMD64.outputs.needs-updating == 'true' && steps.checkLinuxARM64.outputs.needs-updating == 'true'
+        with:
+          branch: main
+          commit_message: "[TASK] Image version updated for ${{ matrix.lookup-name }}"
+          commit_options: '--no-verify --signoff'
+          commit_user_name: "Image Checker [BOT]"
+          commit_user_email: "stefan@buerk.tech"
+          commit_author: "Image Checker <stefan@buerk.tech>"
+          file_pattern: 'images.json'
+          repository: .
