@@ -1,0 +1,46 @@
+name: typo3 image generator check
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+
+jobs:
+  check:
+    name: Check ${{ matrix.docker-image-name }}
+    runs-on: ubuntu-latest
+
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the
+      # added or changed files to the repository.
+      contents: write
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          # This is needed, otherwise the commit push will not trigger the normal on-push workflow
+          token: ${{ secrets.PACKAGES_GITHUB_TOKEN }}
+
+      - name: Fetch TYPO3 testing-infrastructure and regenerate core-testing-phpXY templates
+        run: |
+          ./generate-images.php
+          
+      - name: Check if repository has changed files
+        id: repoStatus
+        run: |
+          hasChanges=0
+          [[ -n $(git status -s) ]] && hasChanges=1
+          echo "REPO_IS_DIRTY=$hasChanges" >> $GITHUB_OUTPUT
+          
+      - name: Create version increase commit
+        uses: stefanzweifel/git-auto-commit-action@v4
+        if: steps.repoStatus.outputs.REPO_IS_DIRTY == 1
+        with:
+          branch: main
+          commit_message: "[TASK] TYPO3 PHP core testing image flavours updated"
+          commit_options: '--no-verify --signoff'
+          commit_user_name: "Image Checker [BOT]"
+          commit_user_email: "stefan@buerk.tech"
+          commit_author: "Image Checker <stefan@buerk.tech>"
+          file_pattern: 'images.json */Dockerfile'
+          repository: .
