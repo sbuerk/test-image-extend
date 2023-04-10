@@ -1,8 +1,11 @@
-name: automatic image build
+name: verify image build
 on:
   push:
     branches:
-      - "main"
+      - '*'
+      - '!main'
+  pull_request:
+    types: [opened, reopened, ready_for_review, synchronize]
 
 jobs:
 
@@ -101,30 +104,6 @@ jobs:
           platforms: ${{ matrix.platforms }}
           tags: ${{ matrix.docker-image-name }}:test
 
-      - name: Build and push
-        uses: docker/build-push-action@v4
-        if: steps.imageShouldBeBuild.outputs.IMAGE_SHOULD_BE_BUILD == 1
-        with:
-          context: ${{ matrix.context }}
-          platforms: ${{ matrix.platforms }}
-          push: true
-          provenance: false
-          tags: |
-            ${{ matrix.docker-image-name }}:${{ matrix.version-full }}
-            ${{ matrix.docker-image-name }}:${{ matrix.version-short }}
-            ${{ matrix.docker-image-name }}:latest
-            ${{ matrix.gh-image-name }}:${{ matrix.version-full }}
-            ${{ matrix.gh-image-name }}:${{ matrix.version-short }}
-            ${{ matrix.gh-image-name }}:latest
-
-      - name: Sync
-        uses: ms-jpq/sync-dockerhub-readme@v1
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-          repository: ${{ matrix.docker-image-name }}
-          readme: "./README.md"
-
       - name: Display fetching image version failed
         if: steps.imageShouldBeBuild.outputs.IMAGE_SHOULD_BE_BUILD == 3
         run: |
@@ -135,7 +114,7 @@ jobs:
           echo ""
           exit           
 
-      - name: Image version should be raised to avoid re-push on same tags
+      - name: Image version should be raised - tags already exists
         if: steps.imageShouldBeBuild.outputs.IMAGE_SHOULD_BE_BUILD == 0
         run: |
           echo " -------------------------------------------------------------------------"
@@ -147,3 +126,7 @@ jobs:
           echo "   and then push the committed change again."
           echo " -------------------------------------------------------------------------"
           echo ""
+          
+          if [[ "$GITHUB_EVENT_NAME" == "pull_request" ]]; then
+            exit 1;
+          fi
