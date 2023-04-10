@@ -7,13 +7,8 @@ LABEL org.opencontainers.image.licenses=MIT
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
 RUN apk add --no-cache \
-        bash \
-        file \
-        git \
-        graphicsmagick \
-        grep \
-        patch \
         linux-headers \
+        mysql-client \
     && chmod +x /usr/local/bin/install-php-extensions \
     && sync \
     && install-php-extensions \

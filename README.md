@@ -23,8 +23,10 @@ new image builds with new versions in another repository:
 
 Based on images (`core-testing-phpXY`) from [TYPO3 Core Testing Images](https://git.typo3.org/typo3/CI/testing-infrastructure/-/tree/main/docker-images).
 
-For demostration purpose, all images are extendend by installing `php-ext ssh2` as
-additionally extension.
+For demonstration purpose, all images are extended by
+
+* installing `mysql-clinet binaries`
+* installing `ssh2` as additionally php extension
 
 **NOTE:** This is only meant as evaluating/testing/proof-of-concept for some workflows,
 before implementing it in real image build repositories.
