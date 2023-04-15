@@ -1,7 +1,7 @@
 name: typo3 image generator check
 on:
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: "05 */6 * * *"
 
 jobs:
   check:

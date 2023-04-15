@@ -32,6 +32,10 @@ jobs:
         ports:
           - 5000:5000
 
+    # Ensure that all matrix flavours are executed, even if one constellation fails. Thus avoiding cancelling
+    # other variants from being finished or started.
+    continue-on-error: true
+
     strategy:
       # This prevents cancellation of matrix job runs, if one/two already failed and let the
       # remaining matrix jobs be executed anyway.

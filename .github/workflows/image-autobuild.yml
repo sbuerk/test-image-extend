@@ -29,6 +29,10 @@ jobs:
         ports:
           - 5000:5000
 
+    # If one matrix check/build fails, other jobs should be processed anyway.
+    # @todo We should have a cross check if a version is missing/not pushed already.
+    continue-on-error: true
+
     strategy:
       # This prevents cancellation of matrix job runs, if one/two already failed and let the
       # remaining matrix jobs be executed anyway.

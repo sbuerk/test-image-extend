@@ -36,6 +36,9 @@ jobs:
       # Matrix is build from images.json file.
       matrix: ${{fromJson(needs.matrix.outputs.matrix)}}
 
+      # Limit to one job, so committing changes for multiple changed base images works in one-run
+      max-parallel: 1
+
     steps:
 
       - name: Checkout
