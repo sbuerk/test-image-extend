@@ -116,6 +116,10 @@ jobs:
           tags: ${{ matrix.docker-image-name }}:test
           provenance: false
 
+      - name: Ensure branch is up-to-date
+        run: |
+          git pull --rebase
+
       - name: Increment version
         if: steps.checkLinuxAMD64.outputs.needs-updating == 'true' && steps.checkLinuxARM64.outputs.needs-updating == 'true'
         run: |
