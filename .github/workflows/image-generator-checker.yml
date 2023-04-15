@@ -21,6 +21,10 @@ jobs:
           # This is needed, otherwise the commit push will not trigger the normal on-push workflow
           token: ${{ secrets.PACKAGES_GITHUB_TOKEN }}
 
+      - name: Ensure branch is up-to-date
+        run: |
+          git pull --rebase
+
       - name: Fetch TYPO3 testing-infrastructure and regenerate core-testing-phpXY templates
         run: |
           ./generate-images.php
