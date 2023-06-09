@@ -79,7 +79,7 @@
     },
     "core-testing-php83": {
         "context": "core-testing-php83",
-        "docker-image-basename": "sbuerk\/core-testing-php83",
+        "docker-image-basename": "typo3\/core-testing-php83",
         "docker-image-name": "sbuerk\/demo-core-testing-php83",
         "full": "1.0.0",
         "gh-image-name": "ghcr.io\/sbuerk\/demo-core-testing-php83",
