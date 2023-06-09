@@ -68,12 +68,12 @@
         "context": "core-testing-php82",
         "docker-image-basename": "typo3\/core-testing-php82",
         "docker-image-name": "sbuerk\/demo-core-testing-php82",
-        "full": "1.0.3",
+        "full": "1.0.4",
         "gh-image-name": "ghcr.io\/sbuerk\/demo-core-testing-php82",
         "lookup-name": "core-testing-php82",
         "major": 1,
         "minor": 0,
-        "patchlevel": 3,
+        "patchlevel": 4,
         "platforms": "linux\/amd64,linux\/arm64",
         "short": "1.0"
     }
