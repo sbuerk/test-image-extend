@@ -85,9 +85,10 @@ function ensureTYPO3Repository(string $basePath, array &$images): void
             echo " >> $changed image configuration for $baseImageName" . PHP_EOL;
             $image = $images[$baseImageName] ?? [
                 "context" => $baseImageName,
-                "docker-image-basename" => "sbuerk/$baseImageName",
+                "docker-image-basename" => "typo3/$baseImageName",
                 "docker-image-name" => "sbuerk/demo-$baseImageName",
                 "full" => "1.0.0",
+                "gh-image-basename" => "ghcr.io/typo3/$baseImageName",
                 "gh-image-name" => "ghcr.io/sbuerk/demo-$baseImageName",
                 "lookup-name" => $baseImageName,
                 "major" => 1,

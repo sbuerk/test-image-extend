@@ -64,8 +64,8 @@ jobs:
         id: checkLinuxAMD64
         uses: giggio/docker-image-update-checker@v2
         with:
-          base-image: ${{ matrix.docker-image-basename }}:latest
-          image: ${{ matrix.docker-image-name }}:latest
+          base-image: ${{ matrix.gh-image-basename }}:latest
+          image: ${{ matrix.gh-image-name }}:latest
           os: linux
           arch: amd64
           verbose: true
@@ -74,8 +74,8 @@ jobs:
         id: checkLinuxARM64
         uses: giggio/docker-image-update-checker@v2
         with:
-          base-image: ${{ matrix.docker-image-basename }}:latest
-          image: ${{ matrix.docker-image-name }}:latest
+          base-image: ${{ matrix.gh-image-basename }}:latest
+          image: ${{ matrix.gh-image-name }}:latest
           os: linux
           arch: arm64
           verbose: true
