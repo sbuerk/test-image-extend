@@ -65,8 +65,8 @@ jobs:
         #uses: giggio/docker-image-update-checker@v2
         uses: georg-jung/docker-image-update-checker@main
         with:
-          base-image: ${{ matrix.gh-image-basename }}:latest
-          image: ${{ matrix.gh-image-name }}:latest
+          base-image: ${{ matrix.docker-image-basename }}:latest
+          image: ${{ matrix.docker-image-name }}:latest
           os: linux
           arch: amd64
           verbose: true
@@ -76,8 +76,8 @@ jobs:
         #uses: giggio/docker-image-update-checker@v2
         uses: georg-jung/docker-image-update-checker@main
         with:
-          base-image: ${{ matrix.gh-image-basename }}:latest
-          image: ${{ matrix.gh-image-name }}:latest
+          base-image: ${{ matrix.docker-image-basename }}:latest
+          image: ${{ matrix.docker-image-name }}:latest
           os: linux
           arch: arm64
           verbose: true

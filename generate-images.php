@@ -73,14 +73,14 @@ function ensureTYPO3Repository(string $basePath, array &$images): void
             $templateFile,
             $dockerFileName,
         );
-        if (is_array($images[$baseImageName] ?? false )
-            && !str_starts_with($images[$baseImageName]["docker-image-basename"] ?? '', 'typo3/')
-        ) {
-            $images[$baseImageName]["docker-image-basename"] = "typo3/$baseImageName";
-            if ($changed === 'unchanged') {
-                $changed = 'basename fix';
-            }
-        }
+//        if (is_array($images[$baseImageName] ?? false )
+//            && !str_starts_with($images[$baseImageName]["docker-image-basename"] ?? '', 'typo3/')
+//        ) {
+//            $images[$baseImageName]["docker-image-basename"] = "typo3/$baseImageName";
+//            if ($changed === 'unchanged') {
+//                $changed = 'basename fix';
+//            }
+//        }
         if ($changed !== 'unchanged' && file_exists($dockerFileName)) {
             echo " >> $changed image configuration for $baseImageName" . PHP_EOL;
             $image = $images[$baseImageName] ?? [
