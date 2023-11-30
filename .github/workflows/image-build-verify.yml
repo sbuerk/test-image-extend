@@ -24,7 +24,7 @@ jobs:
           echo "matrix=${matrixStringifiedObject}" >> $GITHUB_OUTPUT
 
   build:
-    name: Build ${{ matrix.docker-image-name }}:${{ matrix.version-full }}
+    name: Build ${{ matrix.gh-image-name }}:${{ matrix.version-full }}
     runs-on: ubuntu-latest
     needs: matrix
     services:
@@ -75,14 +75,14 @@ jobs:
           [[ "${{ matrix.version-short }}" == "" ]] && exit 1
           exit 0
 
-      - name: Check DockerHub for ${{ matrix.docker-image-name }}:${{ matrix.version-full }}
+      - name: Check GitHub container registry for ${{ matrix.gh-image-name }}:${{ matrix.version-full }}
         id: imageFullVersionState
         run: |
-          manifestInfo=$( docker buildx imagetools inspect ${{ matrix.docker-image-name }}:${{ matrix.version-full }} --raw 2>/dev/null | jq -r '."manifests"[] | ."platform"."os" + "/" + ."platform"."architecture"' )
+          manifestInfo=$( docker buildx imagetools inspect ${{ matrix.gh-image-name }}:${{ matrix.version-full }} --raw 2>/dev/null | jq -r '."manifests"[] | ."platform"."os" + "/" + ."platform"."architecture"' )
           manifestExitCode="$?"
           manifestResult=""
           [[ "$?" -ne 0 ]] && manifestResult="missing"
-          [[ "${manifestInfo}" == *"${{ matrix.docker-image-name }}:${{ matrix.version-full }}: not found"* ]] && manifestResult="missing"
+          [[ "${manifestInfo}" == *"${{ matrix.gh-image-name }}:${{ matrix.version-full }}: not found"* ]] && manifestResult="missing"
           [[ -n "${manifestInfo}" ]] && [[ "${manifestInfo}" == *"linux/amd64"* ]] && manifestResult="found"
           [[ -n "${manifestInfo}" ]] && [[ "${manifestInfo}" == *"linux/arm64"* ]] && manifestResult="found"
           [[ -z "${manifestResult}" ]] && manifestResult="missing"
@@ -107,14 +107,14 @@ jobs:
           load: false
           provenance: false
           platforms: ${{ matrix.platforms }}
-          tags: ${{ matrix.docker-image-name }}:test
+          tags: ${{ matrix.gh-image-name }}:test
 
       - name: Display fetching image version failed
         if: steps.imageShouldBeBuild.outputs.IMAGE_SHOULD_BE_BUILD == 3
         run: |
           echo " -------------------------------------------------------------------------"
           echo "  >> [${{ steps.imageShouldBeBuild.outputs.IMAGE_SHOULD_BE_BUILD }}] Fetching image version failed for image"
-          echo "     \"${{ matrix.docker-image-name }}:${{ env.IMAGE_VERSION_FULL }}\""
+          echo "     \"${{ matrix.gh-image-name }}:${{ env.IMAGE_VERSION_FULL }}\""
           echo " -------------------------------------------------------------------------"
           echo ""
           exit           
@@ -123,7 +123,7 @@ jobs:
         if: steps.imageShouldBeBuild.outputs.IMAGE_SHOULD_BE_BUILD == 0
         run: |
           echo " -------------------------------------------------------------------------"
-          echo ">> [${{ steps.imageShouldBeBuild.outputs.IMAGE_SHOULD_BE_BUILD }}] Image \"${{ matrix.docker-image-name }}:${{ env.IMAGE_VERSION_FULL }}\" already exists."
+          echo ">> [${{ steps.imageShouldBeBuild.outputs.IMAGE_SHOULD_BE_BUILD }}] Image \"${{ matrix.gh-image-name }}:${{ env.IMAGE_VERSION_FULL }}\" already exists."
           echo "   Use:"
           echo ""
           echo "     ./image-version ${{ matrix.lookup-name }} (--patchlevel|--minor)"

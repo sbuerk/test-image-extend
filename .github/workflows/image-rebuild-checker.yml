@@ -19,7 +19,7 @@ jobs:
           echo "matrix=${matrixStringifiedObject}" >> $GITHUB_OUTPUT 
 
   check:
-    name: Check ${{ matrix.docker-image-name }}
+    name: Check ${{ matrix.gh-image-name }}
     runs-on: ubuntu-latest
     needs: matrix
 
@@ -65,8 +65,8 @@ jobs:
         #uses: giggio/docker-image-update-checker@v2
         uses: georg-jung/docker-image-update-checker@main
         with:
-          base-image: ${{ matrix.docker-image-basename }}:latest
-          image: ${{ matrix.docker-image-name }}:latest
+          base-image: ${{ matrix.gh-image-basename }}:latest
+          image: ${{ matrix.gh-image-name }}:latest
           os: linux
           arch: amd64
           verbose: true
@@ -76,8 +76,8 @@ jobs:
         #uses: giggio/docker-image-update-checker@v2
         uses: georg-jung/docker-image-update-checker@main
         with:
-          base-image: ${{ matrix.docker-image-basename }}:latest
-          image: ${{ matrix.docker-image-name }}:latest
+          base-image: ${{ matrix.gh-image-basename }}:latest
+          image: ${{ matrix.gh-image-name }}:latest
           os: linux
           arch: arm64
           verbose: true
@@ -86,7 +86,7 @@ jobs:
         if: steps.checkLinuxAMD64.outputs.needs-updating == 'false' || steps.checkLinuxARM64.outputs.needs-updating == 'false'
         run: |
           echo " -------------------------------------------------------------------------"
-          echo "  >> Base image not changed for image \"${{ matrix.docker-image-name }}\""
+          echo "  >> Base image not changed for image \"${{ matrix.gh-image-name }}\""
           echo "     Nothing further to do."
           echo " -------------------------------------------------------------------------"          
 
@@ -96,7 +96,7 @@ jobs:
           echo " -------------------------------------------------------------------------"
           echo "  >> Base image changed - now check if build still works, and then create"
           echo "     commit to main branch with incremented patchlevel version for image:"
-          echo "     \"${{ matrix.docker-image-name }}\""
+          echo "     \"${{ matrix.gh-image-name }}\""
           echo " -------------------------------------------------------------------------"
 
       - name: Set up QEMU
@@ -115,7 +115,7 @@ jobs:
           push: false
           load: false
           platforms: ${{ matrix.platforms }}
-          tags: ${{ matrix.docker-image-name }}:test
+          tags: ${{ matrix.gh-image-name }}:test
           provenance: false
 
       - name: Ensure branch is up-to-date
