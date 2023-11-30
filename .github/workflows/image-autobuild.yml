@@ -21,6 +21,7 @@ jobs:
 
   matrix:
     runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') }}
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
@@ -35,6 +36,7 @@ jobs:
   build:
     name: Build ${{ matrix.gh-image-name }}:${{ matrix.version-full }}
     runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') }}
     needs: matrix
     services:
       registry:
