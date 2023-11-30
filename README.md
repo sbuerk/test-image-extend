@@ -1,7 +1,7 @@
 sbuerk/test-image-extend
 ========================
 
-# Descriptions
+## Descriptions
 
 This repository is a test/dummy(proof-of-concept) repository to build image based on another image.
 
@@ -29,7 +29,15 @@ additionally extension.
 **NOTE:** This is only meant as evaluating/testing/proof-of-concept for some workflows,
 before implementing it in real image build repositories.
 
-# License
+## Badges
+
+| branch | workflow                                                                                                                                                                                                                     |
+|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| main   | [![image-autobuild](https://github.com/sbuerk/test-image-extend/actions/workflows/image-autobuild.yml/badge.svg)](https://github.com/sbuerk/test-image-extend/actions/workflows/image-autobuild.yml)                         |
+| main   | [![image-rebuild-checker](https://github.com/sbuerk/test-image-extend/actions/workflows/image-rebuild-checker.yml/badge.svg)](https://github.com/sbuerk/test-image-extend/actions/workflows/image-rebuild-checker.yml)       |
+| main   | [![image-generator-checker](https://github.com/sbuerk/test-image-extend/actions/workflows/image-generator-checker.yml/badge.svg)](https://github.com/sbuerk/test-image-extend/actions/workflows/image-generator-checker.yml) |
+
+## License
 
 View [license information](http://php.net/license/) for the software contained in this image.
 
