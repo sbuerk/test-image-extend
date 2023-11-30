@@ -1,9 +1,21 @@
-name: automatic image build
+name: image-autobuild
 on:
   push:
     branches:
       - "main"
-  workflow_dispatch:      
+      
+  workflow_dispatch:
+
+  # Ensure that the build workflow is executed when pushing in other workflow files,
+  # not using a PAT token.
+  workflow_run:
+    workflows: 
+      - "image-generator-checker"
+      - "image-rebuild-checker"
+    branches:
+      - "main"
+    types:
+      - completed
 
 jobs:
 

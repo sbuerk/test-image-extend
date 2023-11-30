@@ -1,4 +1,4 @@
-name: verify image build
+name: image-build-verify
 on:
   push:
     branches:

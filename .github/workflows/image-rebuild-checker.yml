@@ -1,4 +1,4 @@
-name: base image update check
+name: image-rebuild-checker
 on:
   schedule:
     - cron: "10 */2 * * *"

@@ -1,4 +1,4 @@
-name: typo3 image generator check
+name: image-generator-checker
 on:
   schedule:
     - cron: "05 */6 * * *"
