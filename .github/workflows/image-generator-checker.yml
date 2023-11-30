@@ -41,9 +41,9 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          # This is needed, otherwise the commit push will not trigger the normal on-push workflow
-          token: ${{ secrets.PACKAGES_GITHUB_TOKEN }}
+        # with:
+        #   # This is needed, otherwise the commit push will not trigger the normal on-push workflow
+        #   token: ${{ secrets.PACKAGES_GITHUB_TOKEN }}
 
       - name: Ensure branch is up-to-date
         run: |
