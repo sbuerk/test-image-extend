@@ -10,8 +10,6 @@ try {
     foreach($images as $image) {
         $item = [
             "lookup-name" => $image['lookup-name'] ?? '',
-            "docker-image-basename" => $image['docker-image-basename'] ?? '',
-            "docker-image-name" => $image['docker-image-name'] ?? '',
             "gh-image-basename" => $image['gh-image-basename'] ?? '',
             "gh-image-name" => $image['gh-image-name'] ?? '',
             "context" => $image['context'] ?? '',
@@ -21,8 +19,6 @@ try {
         ];
 
         if ($item['lookup-name'] === ''
-            || $item['docker-image-basename'] === ''
-            || $item['docker-image-name'] === ''
             || $item['gh-image-basename'] === ''
             || $item['gh-image-name'] === ''
             || $item['version-full'] === ''

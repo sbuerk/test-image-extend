@@ -1,8 +1,6 @@
 {
     "core-testing-php72": {
         "context": "core-testing-php72",
-        "docker-image-basename": "typo3\/core-testing-php72",
-        "docker-image-name": "sbuerk\/demo-core-testing-php72",
         "full": "1.0.4",
         "gh-image-basename": "ghcr.io\/typo3\/core-testing-php72",
         "gh-image-name": "ghcr.io\/sbuerk\/demo-core-testing-php72",
@@ -15,8 +13,6 @@
     },
     "core-testing-php73": {
         "context": "core-testing-php73",
-        "docker-image-basename": "typo3\/core-testing-php73",
-        "docker-image-name": "sbuerk\/demo-core-testing-php73",
         "full": "1.0.4",
         "gh-image-basename": "ghcr.io\/typo3\/core-testing-php73",
         "gh-image-name": "ghcr.io\/sbuerk\/demo-core-testing-php73",
@@ -29,8 +25,6 @@
     },
     "core-testing-php74": {
         "context": "core-testing-php74",
-        "docker-image-basename": "typo3\/core-testing-php74",
-        "docker-image-name": "sbuerk\/demo-core-testing-php74",
         "full": "1.0.5",
         "gh-image-basename": "ghcr.io\/typo3\/core-testing-php74",
         "gh-image-name": "ghcr.io\/sbuerk\/demo-core-testing-php74",
@@ -43,8 +37,6 @@
     },
     "core-testing-php80": {
         "context": "core-testing-php80",
-        "docker-image-basename": "typo3\/core-testing-php80",
-        "docker-image-name": "sbuerk\/demo-core-testing-php80",
         "full": "1.0.5",
         "gh-image-basename": "ghcr.io\/typo3\/core-testing-php80",
         "gh-image-name": "ghcr.io\/sbuerk\/demo-core-testing-php80",
@@ -57,8 +49,6 @@
     },
     "core-testing-php81": {
         "context": "core-testing-php81",
-        "docker-image-basename": "typo3\/core-testing-php81",
-        "docker-image-name": "sbuerk\/demo-core-testing-php81",
         "full": "1.0.15",
         "gh-image-basename": "ghcr.io\/typo3\/core-testing-php81",
         "gh-image-name": "ghcr.io\/sbuerk\/demo-core-testing-php81",
@@ -71,8 +61,6 @@
     },
     "core-testing-php82": {
         "context": "core-testing-php82",
-        "docker-image-basename": "typo3\/core-testing-php82",
-        "docker-image-name": "sbuerk\/demo-core-testing-php82",
         "full": "1.0.13",
         "gh-image-basename": "ghcr.io\/typo3\/core-testing-php82",
         "gh-image-name": "ghcr.io\/sbuerk\/demo-core-testing-php82",
@@ -85,8 +73,6 @@
     },
     "core-testing-php83": {
         "context": "core-testing-php83",
-        "docker-image-basename": "typo3\/core-testing-php83",
-        "docker-image-name": "sbuerk\/demo-core-testing-php83",
         "full": "1.0.11",
         "gh-image-basename": "ghcr.io\/typo3\/core-testing-php83",
         "gh-image-name": "ghcr.io\/sbuerk\/demo-core-testing-php83",

@@ -73,20 +73,10 @@ function ensureTYPO3Repository(string $basePath, array &$images): void
             $templateFile,
             $dockerFileName,
         );
-//        if (is_array($images[$baseImageName] ?? false )
-//            && !str_starts_with($images[$baseImageName]["docker-image-basename"] ?? '', 'typo3/')
-//        ) {
-//            $images[$baseImageName]["docker-image-basename"] = "typo3/$baseImageName";
-//            if ($changed === 'unchanged') {
-//                $changed = 'basename fix';
-//            }
-//        }
         if ($changed !== 'unchanged' && file_exists($dockerFileName)) {
             echo " >> $changed image configuration for $baseImageName" . PHP_EOL;
             $image = $images[$baseImageName] ?? [
                 "context" => $baseImageName,
-                "docker-image-basename" => "typo3/$baseImageName",
-                "docker-image-name" => "sbuerk/demo-$baseImageName",
                 "full" => "1.0.0",
                 "gh-image-basename" => "ghcr.io/typo3/$baseImageName",
                 "gh-image-name" => "ghcr.io/sbuerk/demo-$baseImageName",
@@ -109,7 +99,7 @@ function ensureTYPO3Repository(string $basePath, array &$images): void
     }
 }
 
-ensureTYPO3Repository($path,$images);
+ensureTYPO3Repository($path, $images);
 ksort($images);
 $written = file_put_contents($imagesFile, \json_encode($images, JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT));
 echo " >> Updates $imagesFile - written $written bytes" . PHP_EOL;
