@@ -3,7 +3,7 @@ ARG TARGETPLATFORM
 ARG IMAGE_NAME
 ARG IMAGE_VERSION
 LABEL org.opencontainers.image.source=https://github.com/sbuerk/test-image-extend
-LABEL org.opencontainers.image.description="Extended typo3/core-testing-php73"
+LABEL org.opencontainers.image.description="Extended ghcr.io/typo3/core-testing-php73"
 LABEL org.opencontainers.image.licenses=MIT
 
 # We use convenient install-php-extensions script to manage additional php extensions
