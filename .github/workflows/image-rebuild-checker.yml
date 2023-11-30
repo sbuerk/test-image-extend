@@ -96,6 +96,7 @@ jobs:
           os: linux
           arch: amd64
           verbose: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: "Check base image for updates (ARM64)"
         id: checkLinuxARM64
@@ -107,7 +108,7 @@ jobs:
           os: linux
           arch: arm64
           verbose: true
-          github_token: 
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Base image not changed
         if: steps.checkLinuxAMD64.outputs.needs-updating == 'false' || steps.checkLinuxARM64.outputs.needs-updating == 'false'
