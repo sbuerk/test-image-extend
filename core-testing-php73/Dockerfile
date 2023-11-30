@@ -1,4 +1,4 @@
-FROM typo3/core-testing-php73
+FROM ghcr.io/typo3/core-testing-php73
 LABEL org.opencontainers.image.source=https://github.com/sbuerk/test-image-extend
 LABEL org.opencontainers.image.description="Extended typo3/core-testing-php73"
 LABEL org.opencontainers.image.licenses=MIT

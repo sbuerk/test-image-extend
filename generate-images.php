@@ -15,7 +15,7 @@ function ensureImageDockerFile(
         return null;
     }
     $replaces = [
-        '%%FROM_IMAGE%%' => 'typo3/' . $imageName,
+        '%%FROM_IMAGE%%' => 'ghcr.io/typo3/' . $imageName,
     ];
     $content = file_get_contents($templateFile);
     $content = str_replace(
