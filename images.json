@@ -1,86 +1,86 @@
 {
     "core-testing-php72": {
         "context": "core-testing-php72",
-        "full": "1.1.0",
+        "full": "1.2.0",
         "gh-image-basename": "ghcr.io\/typo3\/core-testing-php72",
         "gh-image-name": "ghcr.io\/sbuerk\/demo-core-testing-php72",
         "lookup-name": "core-testing-php72",
         "major": 1,
-        "minor": 1,
+        "minor": 2,
         "patchlevel": 0,
         "platforms": "linux\/amd64,linux\/arm64",
-        "short": "1.1"
+        "short": "1.2"
     },
     "core-testing-php73": {
         "context": "core-testing-php73",
-        "full": "1.1.0",
+        "full": "1.2.0",
         "gh-image-basename": "ghcr.io\/typo3\/core-testing-php73",
         "gh-image-name": "ghcr.io\/sbuerk\/demo-core-testing-php73",
         "lookup-name": "core-testing-php73",
         "major": 1,
-        "minor": 1,
+        "minor": 2,
         "patchlevel": 0,
         "platforms": "linux\/amd64,linux\/arm64",
-        "short": "1.1"
+        "short": "1.2"
     },
     "core-testing-php74": {
         "context": "core-testing-php74",
-        "full": "1.1.0",
+        "full": "1.2.0",
         "gh-image-basename": "ghcr.io\/typo3\/core-testing-php74",
         "gh-image-name": "ghcr.io\/sbuerk\/demo-core-testing-php74",
         "lookup-name": "core-testing-php74",
         "major": 1,
-        "minor": 1,
+        "minor": 2,
         "patchlevel": 0,
         "platforms": "linux\/amd64,linux\/arm64",
-        "short": "1.1"
+        "short": "1.2"
     },
     "core-testing-php80": {
         "context": "core-testing-php80",
-        "full": "1.1.0",
+        "full": "1.2.0",
         "gh-image-basename": "ghcr.io\/typo3\/core-testing-php80",
         "gh-image-name": "ghcr.io\/sbuerk\/demo-core-testing-php80",
         "lookup-name": "core-testing-php80",
         "major": 1,
-        "minor": 1,
+        "minor": 2,
         "patchlevel": 0,
         "platforms": "linux\/amd64,linux\/arm64",
-        "short": "1.1"
+        "short": "1.2"
     },
     "core-testing-php81": {
         "context": "core-testing-php81",
-        "full": "1.1.0",
+        "full": "1.2.0",
         "gh-image-basename": "ghcr.io\/typo3\/core-testing-php81",
         "gh-image-name": "ghcr.io\/sbuerk\/demo-core-testing-php81",
         "lookup-name": "core-testing-php81",
         "major": 1,
-        "minor": 1,
+        "minor": 2,
         "patchlevel": 0,
         "platforms": "linux\/amd64,linux\/arm64",
-        "short": "1.1"
+        "short": "1.2"
     },
     "core-testing-php82": {
         "context": "core-testing-php82",
-        "full": "1.1.0",
+        "full": "1.2.0",
         "gh-image-basename": "ghcr.io\/typo3\/core-testing-php82",
         "gh-image-name": "ghcr.io\/sbuerk\/demo-core-testing-php82",
         "lookup-name": "core-testing-php82",
         "major": 1,
-        "minor": 1,
+        "minor": 2,
         "patchlevel": 0,
         "platforms": "linux\/amd64,linux\/arm64",
-        "short": "1.1"
+        "short": "1.2"
     },
     "core-testing-php83": {
         "context": "core-testing-php83",
-        "full": "1.1.0",
+        "full": "1.2.0",
         "gh-image-basename": "ghcr.io\/typo3\/core-testing-php83",
         "gh-image-name": "ghcr.io\/sbuerk\/demo-core-testing-php83",
         "lookup-name": "core-testing-php83",
         "major": 1,
-        "minor": 1,
+        "minor": 2,
         "patchlevel": 0,
         "platforms": "linux\/amd64,linux\/arm64",
-        "short": "1.1"
+        "short": "1.2"
     }
 }

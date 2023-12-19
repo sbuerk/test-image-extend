@@ -17,6 +17,7 @@ RUN apk add --no-cache \
         grep \
         patch \
         linux-headers \
+        findutils \
     && chmod +x /usr/local/bin/install-php-extensions \
     && sync \
     && install-php-extensions \
