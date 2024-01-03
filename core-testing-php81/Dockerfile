@@ -12,10 +12,9 @@ ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/do
 RUN apk add --no-cache \
         bash \
         file \
-        ghostscript \
-        git \        
+        git \
         graphicsmagick \
-        grep \        
+        grep \
         patch \
         linux-headers \
         findutils \
