@@ -19,6 +19,7 @@ RUN apk add --no-cache \
         patch \
         linux-headers \
         findutils \
+        openssh-client \
     && chmod +x /usr/local/bin/install-php-extensions \
     && sync \
     && install-php-extensions \
