@@ -13,13 +13,13 @@
     },
     "core-testing-php73": {
         "context": "core-testing-php73",
-        "full": "1.5.0",
+        "full": "1.5.1",
         "gh-image-basename": "ghcr.io\/typo3\/core-testing-php73",
         "gh-image-name": "ghcr.io\/sbuerk\/demo-core-testing-php73",
         "lookup-name": "core-testing-php73",
         "major": 1,
         "minor": 5,
-        "patchlevel": 0,
+        "patchlevel": 1,
         "platforms": "linux\/amd64,linux\/arm64",
         "short": "1.5"
     },
