@@ -61,13 +61,13 @@
     },
     "core-testing-php82": {
         "context": "core-testing-php82",
-        "full": "1.5.7",
+        "full": "1.5.8",
         "gh-image-basename": "ghcr.io\/typo3\/core-testing-php82",
         "gh-image-name": "ghcr.io\/sbuerk\/demo-core-testing-php82",
         "lookup-name": "core-testing-php82",
         "major": 1,
         "minor": 5,
-        "patchlevel": 7,
+        "patchlevel": 8,
         "platforms": "linux\/amd64,linux\/arm64",
         "short": "1.5"
     },
