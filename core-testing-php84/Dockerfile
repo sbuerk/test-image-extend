@@ -15,6 +15,7 @@ RUN apk add --no-cache \
         ghostscript \
         git \
         graphicsmagick \
+        imagemagick \
         grep \
         patch \
         linux-headers \
