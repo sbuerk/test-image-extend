@@ -11,6 +11,7 @@ try {
         $item = [
             "lookup-name" => $image['lookup-name'] ?? '',
             "gh-image-basename" => $image['gh-image-basename'] ?? '',
+            "gh-image-basetag" => $image['gh-image-basetag'] ?? 'latest',
             "gh-image-name" => $image['gh-image-name'] ?? '',
             "context" => $image['context'] ?? '',
             "version-full" => $image['full'] ?? '',

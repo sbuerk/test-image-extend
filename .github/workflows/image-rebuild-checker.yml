@@ -66,7 +66,7 @@ jobs:
     steps:
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         # with:
         #   # This is needed, otherwise the commit push will not trigger the normal on-push workflow
         #   token: ${{ secrets.PACKAGES_GITHUB_TOKEN }}
@@ -83,7 +83,7 @@ jobs:
         #uses: giggio/docker-image-update-checker@v2
         uses: georg-jung/docker-image-update-checker@main
         with:
-          base-image: ${{ matrix.gh-image-basename }}:latest
+          base-image: ${{ matrix.gh-image-basename }}:${{ matrix.gh-image-basetag }}
           image: ${{ matrix.gh-image-name }}:latest
           os: linux
           arch: amd64
@@ -95,7 +95,7 @@ jobs:
         #uses: giggio/docker-image-update-checker@v2
         uses: georg-jung/docker-image-update-checker@main
         with:
-          base-image: ${{ matrix.gh-image-basename }}:latest
+          base-image: ${{ matrix.gh-image-basename }}:${{ matrix.gh-image-basetag }}
           image: ${{ matrix.gh-image-name }}:latest
           os: linux
           arch: arm64
