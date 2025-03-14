@@ -26,7 +26,7 @@ jobs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - id: set-matrix
         run: |
@@ -87,7 +87,7 @@ jobs:
     steps:
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -132,7 +132,7 @@ jobs:
           echo "IMAGE_SHOULD_BE_BUILD=${shouldBeBuild}" >> $GITHUB_OUTPUT
 
       - name: Build and export to Docker
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         if: steps.imageShouldBeBuild.outputs.IMAGE_SHOULD_BE_BUILD == 1
         with:
           context: ${{ matrix.context }}
@@ -146,7 +146,7 @@ jobs:
           tags: ${{ matrix.gh-image-name }}:test
 
       - name: Build and push
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         if: steps.imageShouldBeBuild.outputs.IMAGE_SHOULD_BE_BUILD == 1
         with:
           context: ${{ matrix.context }}

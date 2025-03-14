@@ -79,6 +79,7 @@ function ensureTYPO3Repository(string $basePath, array &$images): void
                 "context" => $baseImageName,
                 "full" => "1.0.0",
                 "gh-image-basename" => "ghcr.io/typo3/$baseImageName",
+                "gh-image-basetag" => "latest",
                 "gh-image-name" => "ghcr.io/sbuerk/demo-$baseImageName",
                 "lookup-name" => $baseImageName,
                 "major" => 1,
