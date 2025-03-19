@@ -24,6 +24,7 @@ RUN apk add --no-cache \
     && chmod +x /usr/local/bin/install-php-extensions \
     && sync \
     && install-php-extensions \
+        calendar \
         ssh2 \
         pcntl \
     # write version information \
