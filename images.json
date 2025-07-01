@@ -105,14 +105,14 @@
     },
     "splitter-php83": {
         "context": "splitter-php83",
-        "full": "1.0.26",
+        "full": "1.0.27",
         "gh-image-basename": "php",
         "gh-image-basetag": "8.3-fpm-bullseye",
         "gh-image-name": "ghcr.io\/sbuerk\/splitter-php83",
         "lookup-name": "splitter-php83",
         "major": 1,
         "minor": 0,
-        "patchlevel": 26,
+        "patchlevel": 27,
         "platforms": "linux\/amd64,linux\/arm64",
         "short": "1.0"
     }
