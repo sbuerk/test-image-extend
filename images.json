@@ -103,6 +103,19 @@
         "platforms": "linux\/amd64,linux\/arm64",
         "short": "1.0"
     },
+    "core-testing-php85": {
+        "context": "core-testing-php85",
+        "full": "1.0.0",
+        "gh-image-basename": "ghcr.io\/typo3\/core-testing-php85",
+        "gh-image-basetag": "latest",
+        "gh-image-name": "ghcr.io\/sbuerk\/demo-core-testing-php85",
+        "lookup-name": "core-testing-php85",
+        "major": 1,
+        "minor": 0,
+        "patchlevel": 0,
+        "platforms": "linux\/amd64,linux\/arm64",
+        "short": "1.0"
+    },
     "splitter-php83": {
         "context": "splitter-php83",
         "full": "1.0.28",
